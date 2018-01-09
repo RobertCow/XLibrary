@@ -13,7 +13,7 @@ import soft.robert.com.xlibrary.utils.Utils
  * @2227039052@qq.com
  */
 
-class BaseApplication : Application() {
+open class BaseApplication : Application() {
     var titleColor = 0
     override fun onCreate() {
         super.onCreate()
