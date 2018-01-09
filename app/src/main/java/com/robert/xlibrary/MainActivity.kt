@@ -1,6 +1,7 @@
 package com.robert.xlibrary
 
 import android.os.Bundle
+import kotlinx.android.synthetic.main.titlebar.*
 import soft.robert.com.xlibrary.base.BaseActivity
 
 class MainActivity : BaseActivity() {
@@ -16,7 +17,6 @@ class MainActivity : BaseActivity() {
     }
 
     override fun initData(savedInstanceState: Bundle?) {
-
     }
 
 
