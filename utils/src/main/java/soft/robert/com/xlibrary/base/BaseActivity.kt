@@ -24,14 +24,14 @@ abstract class BaseActivity : Activity() {
     private var rootView: View? = null
     private var mImmersionBar: ImmersionBar? = null
 
-    abstract val isScale: Boolean//是否缩放
+    abstract val noScale: Boolean//是否缩放
     abstract val isImmersion: Boolean//是否浸入式状态栏
-    abstract val isScreenNormal: Boolean//是否竖屏
+    abstract val isLandscape: Boolean//是否竖屏
     abstract fun initView(savedInstanceState: Bundle?): Int //初始化View
     abstract fun initData(savedInstanceState: Bundle?) //初始化数据
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (isScreenNormal) {//竖屏
+        if (!isLandscape) {//竖屏
             requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         } else {//横屏
             requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
@@ -45,8 +45,8 @@ abstract class BaseActivity : Activity() {
             if (layoutResID != 0) {//如果initView返回0,框架则不会调用setContentView(),当然也不会 Bind ButterKnife
                 setContentView(layoutResID)
                 rootView = findViewById(android.R.id.content)
-                if (null != rootView && isScale) {
-                    if (isScreenNormal) {//竖屏
+                if (null != rootView && !noScale) {
+                    if (isLandscape) {//竖屏
                         SupportMultipleScreensUtil.init(Utils.getContext(), false)
                     } else {//横屏
                         SupportMultipleScreensUtil.init(Utils.getContext(), true)
